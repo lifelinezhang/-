@@ -19,3 +19,6 @@
 5、undefined simple or complex type 'soap-enc:Array'  （然后修改成<import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="soap-encoding.xsd"/>， ）
 
 6、axis2生成的话会导入不知道多少jar包，是个大坑
+
+#### 三、生成客户端的命令
+wsdl2java -encoding utf-8 -b http://www.w3.org/2001/XMLSchema.xsd -b F:\xsd.xjb  -d F:\test F:\reasonablespread.xml
