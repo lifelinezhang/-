@@ -16,7 +16,11 @@
 
 4、undefinedelement declaration 's:schema'（用<s:any minOccurs="2" maxOccurs="2"/>替代<s:element ref="s:schema"/><s:any />   ）
 
-5、undefined simple or complex type 'soap-enc:Array'  （然后修改成<import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="soap-encoding.xsd"/>， ）
+5、undefined simple or complex type 'soap-enc:Array'  则需要在生成的文件中找到 
+<import namespace="http://schemas.xmlsoap.org/soap/encoding/" />， 
+在浏览器中打开http://schemas.xmlsoap.org/soap/encoding/， 
+保存文件soap-encoding.xsd， 
+然后修改成<import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="soap-encoding.xsd"/>， 
 
 6、axis2生成的话会导入不知道多少jar包，是个大坑
 
