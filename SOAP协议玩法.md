@@ -63,5 +63,16 @@
 </bindings>
 ```
 使用命令：`wsimport(或者wsdl2java) -b http://www.w3.org/2001/XMLSchema.xsd -b xsd.xjb SecureConversation.wsdl`
+
+8、F:\>wsdl2java -encoding utf-8 -b F:\xsd.xjb -d F:\test2 F:\service5.rspread.net.xml
+
+WSDLToJava Error: file:/F:/xsd.xjb [31,34]: SCD "~xsd:attribute" 不匹配任何模式组件
+file:/F:/xsd.xjb [27,32]: SCD "~xsd:element" 不匹配任何模式组件
+file:/F:/xsd.xjb [23,39]: SCD "~xsd:attributeGroup" 不匹配任何模式组件
+file:/F:/xsd.xjb [19,30]: SCD "~xsd:group" 不匹配任何模式组件
+file:/F:/xsd.xjb [15,35]: SCD "~xsd:simpleType" 不匹配任何模式组件
+file:/F:/xsd.xjb [11,36]: SCD "~xsd:complexType" 不匹配任何模式组件
+
+修改命令为：`wsdl2java -encoding utf-8 -b http://www.w3.org/2001/XMLSchema.xsd -b F:\xsd.xjb -d F:\test2 F:\service5.rspread.net.xml`
 #### 三、生成客户端的命令
 wsdl2java -encoding utf-8 -b http://www.w3.org/2001/XMLSchema.xsd -b F:\xsd.xjb  -d F:\test F:\reasonablespread.xml
