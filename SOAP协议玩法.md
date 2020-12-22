@@ -19,10 +19,49 @@
 5、undefined simple or complex type 'soap-enc:Array'  则需要在生成的文件中找到 
 <import namespace="http://schemas.xmlsoap.org/soap/encoding/" />， 
 在浏览器中打开http://schemas.xmlsoap.org/soap/encoding/， 
-保存文件soap-encoding.xsd， 
-然后修改成<import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="soap-encoding.xsd"/>， 
+保存文件schemas.xmlsoap.org.xml， 
+然后修改成<import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="schemas.xmlsoap.org.xml"/>， 
 
 6、axis2生成的话会导入不知道多少jar包，是个大坑
 
+7、WSDLToJava Error: file:/F:/service5.rspread.net.xml [627,19]: 属性 "Any" 已定义。请使用 &lt;jaxb:property> 解决此冲突。
+添加配置文件xsd.xjb
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<bindings xmlns="http://java.sun.com/xml/ns/jaxb"
+          xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+          xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+          version="2.0">
+ 
+  <globalBindings>
+    <xjc:simple />
+  </globalBindings>
+ 
+  <bindings scd="~xsd:complexType">
+    <class name="ComplexTypeType"/>
+  </bindings>
+ 
+  <bindings scd="~xsd:simpleType">
+    <class name="SimpleTypeType"/>
+  </bindings>
+ 
+  <bindings scd="~xsd:group">
+    <class name="GroupType"/>
+  </bindings>
+ 
+  <bindings scd="~xsd:attributeGroup">
+    <class name="AttributeGroupType"/>
+  </bindings>
+ 
+  <bindings scd="~xsd:element">
+    <class name="ElementType"/>
+  </bindings>
+ 
+  <bindings scd="~xsd:attribute">
+    <class name="attributeType"/>
+  </bindings>
+</bindings>
+```
+使用命令：`wsimport(或者wsdl2java) -b http://www.w3.org/2001/XMLSchema.xsd -b xsd.xjb SecureConversation.wsdl`
 #### 三、生成客户端的命令
 wsdl2java -encoding utf-8 -b http://www.w3.org/2001/XMLSchema.xsd -b F:\xsd.xjb  -d F:\test F:\reasonablespread.xml
